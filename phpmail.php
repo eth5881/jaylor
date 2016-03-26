@@ -83,15 +83,15 @@
 
             if(empty($username) || empty($usermail) || empty($msg_text )) 
             {
-                echo "<h3>You did not fill in all fields.</h3>\n";
-                echo "<p>Please <a href=\"phpmailform.php\">try again!</a>!</p>\n</body>\n</html>";
+                echo "<h3>You did not fill in all fields.</h3>";
+                echo "<p>Please <a href=\"phpmailform.php\">try again!</a>!</p>\n</body></html>";
                 return;
             }
 
             if( (!strstr($usermail,"@")) || (!strstr($usermail,".")))
             {
-                echo "<h3>You did not enter a valid email address, so no mail was sent.</h3>\n";
-                echo "<p>Please <a href=\"phpmailform.php\">try again!</a>!</p>\n</body>\n</html>";
+                echo "<h3>You did not enter a valid email address, so no mail was sent.</h3>";
+                echo "<p>Please <a href=\"phpmailform.php\">try again!</a></p></body></html>";
                 return; 
             }
 
@@ -100,14 +100,13 @@
 
             $msg_text = stripslashes($msg_text);
 
-            $message = "Message: $msg_text \n
-                Additional Info:\n
-                IP address = $ip \n
-                Browser Info: $httpagent \n
-                Referring Page: $httpref \n
-                ";
+            $message = "Message: " + $msg_text +
+                "Additional Info:" +
+                "IP address" + $ip +
+                "Browser Info:" + $httpagent + 
+                "Referring Page:" + $httpref;
 
-            $from = "From: $usermail\r\n";
+            $from = "From:" + $usermail;
 
             mail("eth5881@rit.edu", $subject, $message, $from);
 
