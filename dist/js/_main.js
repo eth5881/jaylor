@@ -164,7 +164,7 @@ $('a.contactPage').click(function(){
 				"<p class=\"lead\">585.402.6911</p>" +
 				"<p class=\"lead\">eth5881@rit.edu</p>" +
            "<div class=\"textbox\">" +
-                "<form method=\"post\" action=\"phpmail.php\">" +
+                "<form method=\"post\" action=\"../../phpmail.php\">" +
 
             "<?php" +
                 "$user_ip = getenv(\"REMOTE_ADDR\");" +
