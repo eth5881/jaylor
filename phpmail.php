@@ -1,13 +1,13 @@
 <?php 
-if(isset($_POST['submit'])){
+if(isset($_GET['submit'])){
     $to = "eth5881@rit.edu"; // this is your Email address
-    $from = $_POST['email']; // this is the sender's Email address
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
+    $from = $_GET['email']; // this is the sender's Email address
+    $first_name = $_GET['first_name'];
+    $last_name = $_GET['last_name'];
     $subject = "Form submission";
     $subject2 = "Copy of your form submission";
-    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
-    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_GET['message'];
+    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_GET['message'];
 
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
