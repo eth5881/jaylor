@@ -39,40 +39,6 @@
 
   <body>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <img id="logo_btn" src="assets/img/logo_btn.png" width="30px"/>
-          <a class="navbar-brand" href="#slide-1">Jaylor Construction</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a class="homePage" href="index.html">Home</a></li>
-            <li><a class="workPage" href="#slide-1">Work</a></li>
-			<li><a class="aboutPage" href="#slide-1">About</a></li>
-            <li><a class="contactPage" href="#slide-1">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-      
-    
-	  
-	<!-- Slide 1 -->
-	<section id="slide-1" class="homeSlide">
-		<div class="bcg"
-			data-center="background-position: 50% 0px;"
-			data-top-bottom="background-position: 50% -100px;"
-			data-anchor-target="#slide-1"
-		>
-		<div class="jumbotron">
         <?php
             $username = $_POST["username"];
             $usermail = $_POST["usermail"];
@@ -81,62 +47,19 @@
             $httpref = $_POST["httpref"];
             $httpagent = $_POST["httpagent"];
 
-            if(empty($username) || empty($usermail) || empty($msg_text )) 
-            {
-                echo "<h3>You did not fill in all fields.</h3>";
-                echo "<p>Please <a href=\"phpmailform.php\">try again!</a>!</p>\n</body></html>";
-                return;
-            }
-
-            if( (!strstr($usermail,"@")) || (!strstr($usermail,".")))
-            {
-                echo "<h3>You did not enter a valid email address, so no mail was sent.</h3>";
-                echo "<p>Please <a href=\"phpmailform.php\">try again!</a></p></body></html>";
-                return; 
-            }
-
-
             $subject = $_POST["subject"];
 
             $msg_text = stripslashes($msg_text);
 
-            $message = "Message: " + $msg_text +
-                "Additional Info:" +
-                "IP address" + $ip +
-                "Browser Info:" + $httpagent + 
-                "Referring Page:" + $httpref;
+            $message = $msg_text;
 
-            $from = "From:" + $usermail;
+            $from = $usermail;
 
             mail("eth5881@rit.edu", $subject, $message, $from);
 
         ?>
-
-        <h3>Mail successfully sent.</h3>
-
-        <p>Thank you! The following message has been sent:</p>
-
-        <p>To: Eric Hunt<br />
-            From: <?php echo $username ?> &lt;<?php echo $usermail ?>&gt;<br/>
-            Subject: <?php echo $subject ?><br />
-            Message Text: <?php echo $msg_text ?>
-        </p>
-
-        <div id="p-link">
-            <p>To send another message, return to the <a href="contact.html" id="p-link">contact form</a>.</p>
-        </div>
-	</section>
-      <hr>
-      <footer class="footer">
-        <p>&copy; 2016 Jaylor Construction &amp; Jaylor Heating and Cooling. All Rights Reserved.
-            <br>Created by Eric Hunt.</p>
-      </footer>	
       
-      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="assets/js/vendor/jquery.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
-	<script src="dist/js/_main.js"></script>
-	<script src="dist/js/lightbox.min.js"></script>
+      <p>Message sent.</p>
 
   </body>
 </html>
