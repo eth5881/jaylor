@@ -1,3 +1,23 @@
+<?php 
+if(isset($_POST['submit'])){
+    $to = "eth5881@rit.edu"; // this is your Email address
+    $from = $_POST['email']; // this is the sender's Email address
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,6 +95,14 @@
 		<div class="jumbotron">
 			<img id="logo_page" src="assets/img/logo.jpg"/>
             <p class="motto">"Affordable, and quality home solutions."</p>
+            
+            <form action="" method="post">
+            First Name: <input type="text" name="first_name"><br>
+            Last Name: <input type="text" name="last_name"><br>
+            Email: <input type="text" name="email"><br>
+            Message:<br><textarea rows="5" name="message" cols="30"></textarea><br>
+            <input type="submit" name="submit" value="Submit">
+            </form>
 		  </div>
 
 			<div class="hsContainer">
@@ -87,39 +115,6 @@
 		  </div>
 			</div>
 		</div>
-        
-        <?php
-        //if "email" variable is filled out, send email
-          if (isset($_REQUEST['email']))  {
-
-          //Email information
-          $admin_email = "eth5881@rit.edu";
-          $email = $_REQUEST['email'];
-          $subject = $_REQUEST['subject'];
-          $comment = $_REQUEST['comment'];
-
-          //send email
-          mail($admin_email, "$subject", $comment, "From:" . $email);
-
-          //Email response
-          echo "Thank you for contacting us!";
-          }
-
-          //if "email" variable is not filled out, display the form
-          else  {
-        ?>
-
-         <form method="post">
-          Email: <input name="email" type="text" /><br />
-          Subject: <input name="subject" type="text" /><br />
-          Message:<br />
-          <textarea name="comment" rows="15" cols="40"></textarea><br />
-          <input type="submit" value="Submit" />
-          </form>
-
-        <?php
-          }
-        ?>
 	</section>
       <hr>
       <footer class="footer">
